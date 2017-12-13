@@ -3,9 +3,9 @@ language: c
 services:
 - docker-ce
 script:
-- docker build --rm -t $DOCKER_USERNAME/broadwayd-alpine .
+- docker build --rm -t "$DOCKER_USERNAME/broadwayd-alpine" .
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push $DOCKER_USERNAME/broadwayd-alpine;
+    docker push "$DOCKER_USERNAME/broadwayd-alpine";
     fi
