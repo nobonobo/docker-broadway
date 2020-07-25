@@ -1,4 +1,4 @@
-FROM alpine:3.7 AS build
+FROM alpine:3.12 AS build
 
 RUN apk add -U alpine-sdk
 ENV username="alpine" useremail="alpine@example.org" loginuser="alpine"
@@ -23,9 +23,9 @@ WORKDIR /home/$loginuser/aport/main/gtk+3.0
 RUN sed -i 's|--enable-x11-backend|--enable-x11-backend --enable-broadway-backend|' APKBUILD
 RUN abuild -r
 
-FROM alpine:3.7
+FROM alpine:3.12
 
-RUN apk add -U --no-cache curl fontconfig alpine-desktop xfce4 \
+RUN apk add -U --no-cache curl fontconfig xfdesktop xfce4 \
     && curl -O https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip \
     && mkdir -p /usr/share/fonts/NotoSansCJKjp \
     && unzip NotoSansCJKjp-hinted.zip -d /usr/share/fonts/NotoSansCJKjp/ \
